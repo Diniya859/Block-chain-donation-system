@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Charity Admin</title>
+    <!-- plugins:css -->
+      <!-- Include Bootstrap CSS and JS -->
+      <!-- Include Bootstrap CSS and JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="static/admin/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="static/admin/assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="static/admin/assets/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="static/admin/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="static/admin/assets/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="static/admin/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="static/admin/assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="static/admin/assets/images/favicon.png" />
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+          <!--a class="sidebar-brand brand-logo" href="index.html"><img src="static/admin/assets/images/logo.svg" alt="logo" /></a-->
+          <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="static/admin/assets/images/logo-mini.svg" alt="logo" /></a>
+        </div>
+        <ul class="nav">
+          <li class="nav-item profile">
+            <div class="profile-desc">
+              <div class="profile-pic">
+                <div class="count-indicator">
+                  <img class="img-xs rounded-circle " src="static/admin/assets/images/faces/face15.jpg" alt="">
+                  <span class="count bg-success"></span>
+                </div>
+                <div class="profile-name">
+                  <h5 class="mb-0 font-weight-normal">ADMIN</h5>
+
+                </div>
+              </div>
+
+              <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+                <a href="#" class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-settings text-primary"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-onepassword  text-info"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-calendar-today text-success"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="admin_functions">
+              <span class="menu-icon">
+                <i class="mdi mdi-speedometer"></i>
+              </span>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+              </span>
+              <span class="menu-title">Basic tables</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="">Complaint</a></li>
+                <li class="nav-item"> <a class="nav-link" href="">Charities</a></li>
+                <li class="nav-item"> <a class="nav-link" href="">Feedback</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item menu-items">
+
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar p-0 fixed-top d-flex flex-row">
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="static/admin/assets/images/logo-mini.svg" alt="logo" /></a>
+          </div>
+          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+              <span class="mdi mdi-menu"></span>
+            </button>
+            <ul class="navbar-nav w-100">
+              <li class="nav-item w-100">
+                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+
+                </form>
+              </li>
+            </ul>
+
+                <a class="nav-link"  href="#" data-toggle="">
+                  <div class="navbar-profile">
+
+                   </p><a style="text-align: center;" href="home" class="preview-subject mb-1">Logout</a>
+
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+                  <h6 class="p-3 mb-0">Profile</h6>
+
+
+
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="mdi mdi-format-line-spacing"></span>
+            </button>
+          </div>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-12 grid-margin stretch-card">
+                <div class="card corona-gradient-card">
+                  <div class="card-body py-0 px-0 px-sm-3">
+                    <div class="row align-items-center">
+                      <div class="col-4 col-sm-3 col-xl-2">
+                        <img src="static/admin/assets/images/dashboard/Group126@2x.png" class="gradient-corona-img img-fluid" alt="">
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                          <h3 class="mb-0">{{ users_count }}</h3>
+                          <!--p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p-->
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="icon icon-box-success ">
+
+                        </div>
+                      </div>
+                    </div>
+                    <h6 class="text-muted font-weight-normal">USERS</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                          <h3 class="mb-0">{{ feedback_count }}</h3>
+
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="icon icon-box-success">
+
+                        </div>
+                      </div>
+                    </div>
+                    <h6 class="text-muted font-weight-normal">FEEDBACKS</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                          <h3 class="mb-0">{{ complaints_count }}</h3>
+
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="icon icon-box-danger">
+
+                        </div>
+                      </div>
+                    </div>
+                    <h6 class="text-muted font-weight-normal"> QUERIES</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                          <h3 class="mb-0">{{ charities_count }}</h3>
+
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="icon icon-box-success ">
+                        </div>
+                      </div>
+                    </div>
+                    <h6 class="text-muted font-weight-normal">CHARITIES</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--div class="row">
+              <div-- class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Transaction History</h4>
+                    <canvas ></canvas>
+                    <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                      <div class="text-md-center text-xl-left">
+
+                      </div>
+                      <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
+
+                      </div>
+                    </div>
+                    <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                      <div class="text-md-center text-xl-left">
+
+                      </div>
+                      <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div-->
+                <div class="col-md-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex flex-row justify-content-between">
+                        <h4 style="text-align: center">Our Charities</h4>
+                        <!-- Add Button -->
+                        <button class="btn btn-primary" onclick="openAddCharityModal()">Add Charity</button>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="preview-list">
+                            <div class="preview-item border-bottom">
+                              <div class="preview-item-content d-sm-flex flex-grow">
+                                <table style="width: 100%; border-collapse: collapse; text-align: left; font-family: Arial, sans-serif;">
+                                  <thead class="table-header">
+                                    <tr>
+                                      <th style="padding: 10px; font-weight: bold; text-align: center; color: whitesmoke;">SLNO</th>
+                                      <th style="padding: 12px; font-weight: bold; text-align: center; color: whitesmoke;">TITLE</th>
+                                      <th style="padding: 12px; font-weight: bold; text-align: center; color: whitesmoke;">CATEGORY</th>
+                                      <th style="padding: 12px; font-weight: bold; text-align: center; color: whitesmoke;">PLACE</th>
+                                        <th style="padding: 12px; font-weight: bold; text-align: center; color: whitesmoke;">DESCRIPTION</th>
+                                      <th style="padding: 12px; font-weight: bold; text-align: center; color: whitesmoke;">ACTIONS</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {% for charities in charities %}
+                                    <tr>
+                                      <td style="padding: 10px; color: floralwhite; text-align: center;">{{ forloop.counter }}</td>
+                                      <td style="padding: 10px; color: ghostwhite; text-align: center; text-transform: uppercase">{{ charities.title }}</td>
+                                      <td style="padding: 10px; color: ghostwhite; text-align: center; text-transform: uppercase">{{ charities.category }}</td>
+                                      <td style="padding: 10px; color: ghostwhite; text-align: center; text-transform: uppercase">{{ charities.place }}</td>
+                                        <td style="padding: 10px; color: ghostwhite; text-align: center; ">{{ charities.description }}</td>
+                                      <td style="padding: 10px; text-align: center;">
+                                        <button class="btn btn-danger btn-sm" onclick="deleteCharity('{{ charities.id }}')">Delete</button>
+                                      </td>
+                                    </tr>
+                                    {% endfor %}
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Add Charity Modal -->
+                <div id="addCharityModal" class="modal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h3 class="modal-title">Add New Charity</h3>
+                        <button type="button" class="close-btn" onclick="closeAddCharityModal()">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="addCharityForm" method="POST" action="/add">
+                          {% csrf_token %}
+                          <div class="form-group">
+                            <label for="title">Title:</label>
+                            <input type="text" id="title" name="textfield" class="form-control" placeholder="Enter charity title" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="category">Category:</label>
+                            <input type="text" id="category" name="textfield3" class="form-control" placeholder="Enter charity category" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="place">Place:</label>
+                            <input type="text" id="place" name="textfield1" class="form-control" placeholder="Enter charity place" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea id="description" name="textfield2" class="form-control" placeholder="Enter charity description" rows="4" required></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary btn-block">Add Charity</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <style>
+                /* Modal Overlay */
+                .modal {
+                  display: none; /* Hidden by default */
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  overflow: auto;
+                  background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+                  z-index: 9999;
+                }
+
+                /* Modal Dialog */
+                .modal-dialog {
+                  margin: 5% auto;
+                  width: 80%; /* Default width */
+                  max-width: 600px; /* Maximum width */
+                  background-color: #fff;
+                  border-radius: 10px;
+                  overflow: hidden;
+                  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                }
+
+                /* Modal Header */
+                .modal-header {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  padding: 15px 20px;
+                  background-color: green;
+                  color: #fff;
+                }
+
+                /* Close Button */
+                .close-btn {
+                  font-size: 20px;
+                  color: #fff;
+                  border: none;
+                  background: none;
+                  cursor: pointer;
+                }
+
+                /* Modal Body */
+                .modal-body {
+                  padding: 20px;
+                }
+
+                /* Form Styling */
+                .form-group {
+                  margin-bottom: 15px;
+                }
+
+                .form-group label {
+                  display: block;
+                  margin-bottom: 5px;
+                  font-weight: bold;
+                }
+
+                .form-control {
+                  width: 100%;
+                  padding: 10px;
+                  border: 1px solid #ccc;
+                  border-radius: 5px;
+                  font-size: 14px;
+                }
+
+                .form-control:focus {
+                  outline: none;
+                  border-color: green;
+                  box-shadow: 0 0 5px rgba(157, 38, 255, 0.5);
+                }
+
+                /* Submit Button */
+                .btn-block {
+                  display: block;
+                  width: 100%;
+                  padding: 10px;
+                  font-size: 16px;
+                  font-weight: bold;
+                  text-align: center;
+                  color: #fff;
+                  background-color: blueviolet;
+                  border: none;
+                  border-radius: 5px;
+                  cursor: pointer;
+                }
+
+                .btn-block:hover {
+                  background-color: #0056b3;
+                }
+                </style>
+
+                <script>
+                  function openAddCharityModal() {
+                    document.getElementById("addCharityModal").style.display = "block";
+                  }
+
+                  function closeAddCharityModal() {
+                    document.getElementById("addCharityModal").style.display = "none";
+                  }
+                  function deleteCharity(id) {
+                    if (confirm("Are you sure you want to delete this charity?")) {
+                      fetch(`/delete-charity/${id}/`, { method: "DELETE", headers: { "X-CSRFToken": "{{ csrf_token }}" } })
+                        .then(response => {
+                          if (response.ok) location.reload();
+                          else alert("Failed to delete charity.");
+                        });
+                    }
+                }
+                </script>
+                <div class="row">
+                  <div class="col-12 grid-margin">
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title">QUERIES</h4>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th style="text-align: center;">SLNO</th>
+                                <th style="text-align: center;">User Name</th>
+                                <th style="text-align: center;">Complaint Type</th>
+                                <th style="text-align: center;">Complaint Description</th>
+                                <th style="text-align: center;">Complaint Date</th>
+                                <th style="text-align: center;">Reply</th>
+                                  <th style="text-align: center;">Reply Date</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for complaint in complaints %}
+                              <tr>
+                                <th scope="row" style="text-align: center;">{{ forloop.counter }}</th>
+                                <td style="text-align: center;">{{ complaint.USER.email }}</td>
+                                <td style="text-align: center;">{{ complaint.complaint_type }}</td>
+                                <td style="text-align: center;">{{ complaint.complaint }}</td>
+                                <td style="text-align: center;">{{ complaint.complaint_date }}</td>
+                                <td style="text-align: center;">
+                                     {% if complaint.reply == "pending" %}
+                                  <button class="btn btn-primary" data-toggle="modal" data-target="#replyModal"
+                                    data-id="{{ complaint.id }}" data-email="{{ complaint.USER.email }}">
+                                    Sent Reply
+                                  </button>
+                                    {% else %}
+                                 <span>{{ complaint.reply }}</span>
+                                        {% endif %}
+                                </td>
+                              <td style="text-align: center;">
+                                  {% if complaint.reply_date == "pending" %}
+                                  <button>Pending</button>
+                                  {% else %}
+                                  {{ complaint.reply_date }}
+                              {% endif %}
+                              </td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            <!-- Reply Modal -->
+            <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="replyModalLabel">Reply to Complaint</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <!--form id="replyForm" method="POST" action="/reply_post/${id}/"-->
+                    <form id="replyForm" method="POST" action="">
+                      {% csrf_token %}
+                    <div class="modal-body">
+                      <input type="hidden" id="complaintId" name="complaint_id">
+
+                      <div class="form-group">
+                        <label for="replyMessage">Reply Message</label>
+                        <textarea class="form-control" id="replyMessage" name="textfield" rows="4" required></textarea>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Send Reply</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <script>
+              // Populate modal with complaint data
+              $('#replyModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var complaintId = button.data('id');
+                var userEmail = button.data('email');
+
+                var modal = $(this);
+                modal.find('#complaintId').val(complaintId);
+                modal.find('#userEmail').val(userEmail);
+
+                // Set the form action dynamically
+                modal.find('#replyForm').attr('action', '/reply_post/' + complaintId + '/');
+            });
+
+            </script>
+
+            <div class="row">
+              <div class="col-md-6 col-xl-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 style="">REVIEW</h4>
+                    <div class="">
+                      <div class="">
+                        <div class="">
+                          <table style="width: 100%; border-collapse: collapse; text-align: left; font-family: Arial, sans-serif;">
+                            <thead class="" style=" border-bottom: 2px solid #ccc;">
+                                <tr>
+                                    <th style="padding: 12px 15px 15px ; font-weight: bold; color: whitesmoke;text-align: center;">User</th>
+                                    <th style="padding: 12px; font-weight: bold; color: whitesmoke;text-align: center;">Message</th>
+                                    <th style="padding: 12px; font-weight: bold; color: whitesmoke;text-align: center;">Rating</th>
+                                    <th style="padding: 12px; font-weight: bold; color: whitesmoke;text-align: center;">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for feedback in feedbacks %}
+                                <tr style="border-bottom: 1px solid #e0e0e0;">
+                                    <td style="padding: 10px; color: ghostwhite;text-align: center;">{{ feedback.USER.email }}</td>
+                                    <td style="padding: 10px; color: ghostwhite;text-align: center;">{{ feedback.feedback }}</td>
+                                    <td style="padding: 10px; color: ghostwhite; text-align: center;">{{ feedback.rating }}</td>
+                                    <td style="padding: 10px; color: ghostwhite;text-align: center;">{{ feedback.feedback_date }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        </div>
+                      </div>
+
+                    </div>
+                </div>
+              </div>
+
+              <div class="col-md-12 col-xl-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">To do list</h4>
+                    <div class="add-items d-flex">
+                      <input type="text" class="form-control todo-list-input" placeholder="enter task..">
+                      <button class="add btn btn-primary todo-list-add-btn">Add</button>
+                    </div>
+                    <div class="list-wrapper">
+                      <ul class="d-flex flex-column-reverse text-white todo-list todo-list-custom">
+                       <li>
+
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+              <section style="align-content: center">
+                 <CENTER><a style="font-size: 30px; color: white" href="admin_functions">Click To Reach Up</a></CENTER>
+
+              </section>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="static/admin/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="static/admin/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="static/admin/assets/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="static/admin/assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
+    <script src="static/admin/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="static/admin/assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="static/admin/assets/js/off-canvas.js"></script>
+    <script src="static/admin/assets/js/hoverable-collapse.js"></script>
+    <script src="static/admin/assets/js/misc.js"></script>
+    <script src="static/admin/assets/js/settings.js"></script>
+    <script src="static/admin/assets/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="static/admin/assets/js/dashboard.js"></script>
+    <!-- End custom js for this page -->
+  </body>
+</html>

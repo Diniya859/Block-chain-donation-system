@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Blockchain</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.4/web3.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #218838;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .status {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Donate to {{ charity.title }}</h2>
+        <p>{{ charity.description }}</p>
+        <p><strong>Location:</strong> {{ charity.place }}</p>
+
+        <h3>Connect Your Wallet</h3>
+        <button onclick="connectWallet()">Connect MetaMask</button>
+        <p class="status" id="walletStatus">Wallet: Not Connected</p>
+
+        <h3>Enter Donation Amount</h3>
+        <input type="number" id="amount" placeholder="Amount in ETH">
+        <button onclick="donate()">Donate Now</button>
+
+        <p class="status" id="transactionStatus"></p>
+    </div>
+
+<script>
+    let web3;
+    let contract;
+    let userAccount;
+
+    const contractAddress = ""; // Replace with deployed contract address
+    const contractABI = [
+        {
+            "inputs": [],
+            "name": "donate",
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getBalance",
+            "outputs": [
+                { "internalType": "uint256", "name": "", "type": "uint256" }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ];
+
+    async function connectWallet() {
+        if (window.ethereum) {
+            try {
+                web3 = new Web3(window.ethereum);
+                await window.ethereum.request({ method: "eth_requestAccounts" });
+                const accounts = await web3.eth.getAccounts();
+                userAccount = accounts[0];
+                document.getElementById("walletStatus").innerText = "Wallet: " + userAccount;
+
+                contract = new web3.eth.Contract(contractABI, contractAddress);
+            } catch (error) {
+                document.getElementById("transactionStatus").innerText = "Wallet connection failed!";
+                console.error("MetaMask connection error:", error);
+            }
+        } else {
+            document.getElementById("transactionStatus").innerText = "MetaMask not detected!";
+        }
+    }
+
+    async function donate() {
+        if (!contract) {
+            document.getElementById("transactionStatus").innerText = "Connect wallet first!";
+            return;
+        }
+        if (!userAccount) {
+            document.getElementById("transactionStatus").innerText = "Please connect your MetaMask wallet!";
+            return;
+        }
+
+        const amount = document.getElementById("amount").value;
+        if (!amount || amount <= 0) {
+            document.getElementById("transactionStatus").innerText = "Enter a valid donation amount.";
+            return;
+        }
+
+        try {
+            document.getElementById("transactionStatus").innerText = "Waiting for confirmation...";
+
+            const balance = await web3.eth.getBalance(userAccount);
+            const balanceInEth = web3.utils.fromWei(balance, "ether");
+
+            if (parseFloat(balanceInEth) < parseFloat(amount)) {
+                document.getElementById("transactionStatus").innerText = "Insufficient balance!";
+                return;
+            }
+
+            const gasPrice = await web3.eth.getGasPrice();
+            const gasLimit = await contract.methods.donate().estimateGas({
+                from: userAccount,
+                value: web3.utils.toWei(amount, "ether")
+            });
+
+            const tx = await contract.methods.donate().send({
+                from: userAccount,
+                value: web3.utils.toWei(amount, "ether"),
+                gas: gasLimit,
+                gasPrice: gasPrice
+            });
+
+            document.getElementById("transactionStatus").innerText = "Transaction Successful! Hash: " + tx.transactionHash;
+
+            await fetch("/make-payment/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": getCSRFToken(),
+                },
+                body: JSON.stringify({
+                    sender_address: userAccount,  // ✅ Fixed key name
+                    amount: amount,
+                    transaction_hash: tx.transactionHash,
+                    status: "Success"
+                }),
+            });
+
+        } catch (error) {
+            document.getElementById("transactionStatus").innerText = "Transaction Failed!";
+            console.error("Transaction error:", error);
+
+            await fetch("/make-payment/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": getCSRFToken(),
+                },
+                body: JSON.stringify({
+                    sender_address: userAccount,  // ✅ Fixed key name
+                    amount: amount,
+                    transaction_hash: "N/A",
+                    status: "Failed"
+                }),
+            });
+        }
+    }
+
+    function getCSRFToken() {
+        return document.cookie.split('; ')
+            .find(row => row.startsWith('csrftoken='))
+            ?.split('=')[1];
+    }
+</script>
+
+</body>
+</html>
